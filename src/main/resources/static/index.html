@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="beneficioApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Benefícios</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="BeneficioController" class="container mt-4">
+
+    <h2>{{ beneficio.id ? 'Editar' : 'Novo' }} Benefício</h2>
+    <!-- Formulário de Cadastro/Edição -->
+    <form ng-submit="salvar()" class="row g-3 mb-5 p-3 border rounded bg-light">
+        <div class="col-md-4">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" ng-model="beneficio.nome" required>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Valor</label>
+            <input type="number" step="0.01" class="form-control" ng-model="beneficio.valor" required>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Status</label>
+            <select class="form-select" ng-model="beneficio.ativo">
+                <option ng-value="true">Ativo</option>
+                <option ng-value="false">Inativo</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Descrição</label>
+            <textarea class="form-control" ng-model="beneficio.descricao"></textarea>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">{{ beneficio.id ? 'Atualizar' : 'Salvar' }}</button>
+            <button type="button" class="btn btn-secondary" ng-click="limpar()">Cancelar</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <div class="d-flex justify-content-between mb-3">
+        <h3>Benefícios Cadastrados</h3>
+        <button class="btn btn-outline-primary btn-sm" ng-click="carregarBeneficios()">Atualizar Lista</button>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="b in beneficios">
+                <td>{{ b.id }}</td>
+                <td>{{ b.nome }}</td>
+                <td>{{ b.valor | currency:'R$ ' }}</td>
+                <td><span class="badge {{ b.ativo ? 'bg-success' : 'bg-danger' }}">{{ b.ativo ? 'Ativo' : 'Inativo' }}</span></td>
+                <td>
+                    <button class="btn btn-warning btn-sm" ng-click="editar(b)">Editar</button>
+                    <button class="btn btn-danger btn-sm" ng-click="excluir(b.id)">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
