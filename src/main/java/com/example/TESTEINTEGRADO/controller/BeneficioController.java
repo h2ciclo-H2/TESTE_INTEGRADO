@@ -25,10 +25,7 @@ public class BeneficioController {
     @ApiResponse(responseCode = "200", description = "Sucesso")
     @GetMapping
     public List<Beneficio> listarTodosBeneficios() {
-
-        //beneficioEjbService.transfer(1L, 2L, new BigDecimal("100.00"));
-
-        return beneficioEjbService.listarTodosBeneficios();
+    return beneficioEjbService.listarTodosBeneficios();
     }
 
     @PostMapping("/{idOrigem}/transferir/{idDestino}/{valor}")
