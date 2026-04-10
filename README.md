@@ -40,6 +40,7 @@
       mvn test "-Dtest=BeneficioControllerTest"
 
 6. Documentar (Swagger, README)
+    http://localhost:8080/swagger-ui/index.html#/
 
 7. Enviar link para recrutadora com seu     repositório para análise
   https://github.com/h2ciclo-H2/RESPOSTATESTEINTEGRADO.git
