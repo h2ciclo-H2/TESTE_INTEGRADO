@@ -10,7 +10,7 @@
 <body ng-controller="BeneficioController" class="container mt-4">
 
     <h2>{{ beneficio.id ? 'Editar' : 'Novo' }} Benefício</h2>
-    <!-- Formulário de Cadastro/Edição -->
+    <!-- Formulário de Cadastro e Edição de Beneficios -->
     <form ng-submit="salvar()" class="row g-3 mb-5 p-3 border rounded bg-light">
         <div class="col-md-4">
             <label class="form-label">Nome</label>
@@ -42,11 +42,13 @@
     <div class="d-flex justify-content-between mb-3">
         <h3>Benefícios Cadastrados</h3>
         <button class="btn btn-outline-primary btn-sm" ng-click="carregarBeneficios()">Atualizar Lista</button>
+        <button type="button" class="btn btn-success" ng-click="trasnferirBeneficio()">Trasnferir Benefício</button>
     </div>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
+                <th> - </th>
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Valor</th>
@@ -56,6 +58,9 @@
         </thead>
         <tbody>
             <tr ng-repeat="b in beneficios">
+                <td>
+                    <input class="form-check-input" type="checkbox" ng-model="b.selecionado">
+                </td>                
                 <td>{{ b.id }}</td>
                 <td>{{ b.nome }}</td>
                 <td>{{ b.valor | currency:'R$ ' }}</td>
@@ -67,6 +72,5 @@
             </tr>
         </tbody>
     </table>
-
 </body>
 </html>

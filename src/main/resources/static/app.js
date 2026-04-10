@@ -17,7 +17,39 @@ angular.module('beneficioApp', [])
             })
             .finally(function() {
                 $scope.carregando = false;
+        });
+    };
+
+    // transferir Beneficio  
+     $scope.trasnferirBeneficio = function() {
+
+        var valorSelecionado = [];       
+        var idSelecionados = [];
+               
+        if ($scope.beneficios.some(b => b.selecionado)){
+
+            angular.forEach($scope.beneficios, function(b) {
+                if (b.selecionado) { 
+                    idSelecionados.push(b.id); 
+                    valorSelecionado.push(b.valor);
+                }
             });
+
+            if (idSelecionados.length === 2) {
+                var idOrigem = idSelecionados[0];
+                var idDestino = idSelecionados[1];
+                var valorOrigem = valorSelecionado[0];
+                var valorDestino = valorSelecionado[1];
+                $http.post(urlBase+ '/' + idOrigem +"/transferir/"+
+                idDestino+"/"+ valorDestino);                
+                $scope.carregarBeneficios();    
+            }else {
+                alert("Selecione exatamente 2 benefícios para realizar a transferência.");
+            }      
+        } else {            
+            $scope.limpar();
+            $scope.carregarBeneficios();
+        }       
     };
 
     // Salvar (CRIAR ou ATUALIZAR)    

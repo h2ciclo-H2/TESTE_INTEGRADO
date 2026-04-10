@@ -34,6 +34,12 @@ public class Beneficio implements Serializable {
 
     public Beneficio() {
     }
+
+    public Beneficio(String nome, BigDecimal valor, boolean ativo) {
+        this.nome = nome;
+        this.valor = valor;
+        this.ativo = ativo;
+    }
     
     public Beneficio(String nome, String descricao, BigDecimal valor, boolean ativo, Long version) {
         this.nome = nome;
@@ -95,7 +101,5 @@ public class Beneficio implements Serializable {
     public String toString() {
         return " Beneficio id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", valor=" + valor + ", ativo="
                 + ativo + ", version=" + version ;
-    }
-
-    
+    }    
 }

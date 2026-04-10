@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.ejb.EJB;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @RestController
@@ -30,22 +31,32 @@ public class BeneficioController {
         return beneficioEjbService.listarTodosBeneficios();
     }
 
+    @PostMapping("/{idOrigem}/transferir/{idDestino}/{valor}")
+    @Operation(summary = "Tranfere o valor de um benefício existente para outro", description = "Transfere o valor de um benefício existente para outro benefício com base no ID fornecido")
+    public void transferirBenefico(@PathVariable Long idOrigem,@PathVariable Long idDestino, @PathVariable BigDecimal valor) { 
+        
+        System.out.println(idOrigem);
+        System.out.println(idDestino);
+        System.out.println(valor);
+        beneficioEjbService.transfer(idOrigem, idDestino, valor); 
+    }
+
     @Operation(summary = "Cria um novo benefício no sistema", description = "Cria um novo benefício com os dados fornecidos")
     @PostMapping
-    public void salvar(@RequestBody Beneficio beneficio) { 
+    public void salvarBenefico(@RequestBody Beneficio beneficio) { 
         beneficioEjbService.salvar(beneficio); 
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza um benefício existente", description = "Atualiza os dados de um benefício existente com base no ID fornecido")
-    public void atualizar(@PathVariable Long id, @RequestBody Beneficio beneficio) { 
+    public void atualizarBenefico(@PathVariable Long id, @RequestBody Beneficio beneficio) { 
         beneficio.setId(id);
         beneficioEjbService.atualizar(beneficio); 
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Exclui um benefício", description = "Exclui um benefício existente com base no ID fornecido")
-    public void excluir(@PathVariable Long id) { 
+    public void excluirBenefico(@PathVariable Long id) { 
         beneficioEjbService.excluir(id); 
     }
 }

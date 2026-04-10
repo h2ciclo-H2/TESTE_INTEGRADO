@@ -19,6 +19,9 @@ import java.math.BigDecimal;
 @Service
 public class BeneficioEjbService {
 
+    @Autowired
+    private BeneficioRepoitory repository;
+
     @PersistenceContext
     private EntityManager em;
 
@@ -34,11 +37,7 @@ public class BeneficioEjbService {
         em.merge(from);
         em.merge(to);
     }
-
-    @Autowired
-    private BeneficioRepoitory repository;
-
-
+   
     //Localiza beneficio por ID
     public Beneficio buscarPorId(Long id) {
         return repository.findById(id)
@@ -51,6 +50,14 @@ public class BeneficioEjbService {
         beneficio.setId(null); 
         beneficio.setVersion(null);
         em.persist(beneficio);
+    }
+
+    @Transactional
+    public Beneficio salvarteste(Beneficio beneficio) {
+        beneficio.setId(null); 
+        beneficio.setVersion(null);
+        em.persist(beneficio);
+        return beneficio;
     }
 
     //Atualiza um beneficio existente
