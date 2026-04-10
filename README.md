@@ -16,6 +16,7 @@
     target\classes\db\schema.sql
 
 2. Corrigir bug no BeneficioEjbService
+    Necessario selecionar dois beneficios para executar a função 
 
 3. Implementar backend CRUD + integração com EJB
     src\main\java\com\example\TESTEINTEGRADO\controller\
