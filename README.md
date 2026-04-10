@@ -12,18 +12,22 @@
     
 ## ✅ Tarefas do candidato
 1. Executar db/schema.sql e db/seed.sql
+
     Banco de dados carregado em memória
     target\classes\db\schema.sql
 
 2. Corrigir bug no BeneficioEjbService
+
     Necessario selecionar dois beneficios para executar a função 
 
 3. Implementar backend CRUD + integração com EJB
+
     src\main\java\com\example\TESTEINTEGRADO\controller\
     BeneficioController.java
     BeneficioEjbService.java
 
 4. Desenvolver frontend Angular consumindo backend
+
     Pagina index.HmTL
     target\classes\static\index.html
 
@@ -31,6 +35,7 @@
       http://localhost:8080/index.Html
 
 5. Implementar testes
+
       src\test\java\com\example\
       BeneficioControllerTest.java
 
@@ -41,7 +46,9 @@
       mvn test "-Dtest=BeneficioControllerTest"
 
 6. Documentar (Swagger, README)
+
     http://localhost:8080/swagger-ui/index.html#/
 
 7. Enviar link para recrutadora com seu     repositório para análise
+
   https://github.com/h2ciclo-H2/RESPOSTATESTEINTEGRADO.git
